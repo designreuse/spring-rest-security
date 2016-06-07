@@ -27,12 +27,9 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = (String) authentication.getPrincipal();
-        String password = (String) authentication.getCredentials();
-        HttpServletRequest request = ((MyUsernamePasswordAuthToken) authentication).getHttpServletRequest();
 
         try {
             UserDetails userCtx = null;
-
             if (authentication.getCredentials() == null || userCtx == null) {
                 LOGGER.debug("No pre-authenticated credentials found in request.");
                 throw new BadCredentialsException("No pre-authenticated credentials found in request.");

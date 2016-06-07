@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 public class JwtFilter extends GenericFilterBean {
 
-    private final Logger log = LoggerFactory.getLogger(JwtFilter.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(JwtFilter.class);
 
     private JwtTokenProvider tokenProvider;
 
@@ -41,7 +41,7 @@ public class JwtFilter extends GenericFilterBean {
             }
             chain.doFilter(req, res);
         } catch (ExpiredJwtException e) {
-            log.info("Security exception for user {} - {}", e.getClaims().getSubject(), e.getMessage());
+            LOGGER.info("Security exception for user {} - {}", e.getClaims().getSubject(), e.getMessage());
             ((HttpServletResponse) res).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }
